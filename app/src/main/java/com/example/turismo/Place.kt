@@ -11,5 +11,6 @@ data class Place(
   val distance: Double,
   val address: String,
   val latitude: Double,
-  val longitude: Double
+  val longitude: Double,
+  val index: Int
 ): Parcelable

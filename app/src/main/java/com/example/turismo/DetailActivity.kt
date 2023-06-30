@@ -16,6 +16,7 @@ class DetailActivity : AppCompatActivity(), OnMapReadyCallback {
     const val EXTRA_PLACE = "DetailActivity:place"
   }
 
+  private lateinit var map: GoogleMap
   private val list = mutableListOf<CarouselItem>()
 
   private var latitude: Double = -34.603731
@@ -51,18 +52,21 @@ class DetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
     binding.carousel.setData(list)
 
-    val mapFragment =
-      supportFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
+    val mapFragment = supportFragmentManager.findFragmentById(binding.map.id) as? SupportMapFragment
     mapFragment?.getMapAsync(this)
   }
 
   override fun onMapReady(googleMap: GoogleMap) {
-    val latLng = LatLng(latitude, longitude)
-    googleMap.addMarker(
+    map = googleMap
+    createMarker(LatLng(latitude, longitude))
+  }
+
+  private fun createMarker(latLng: LatLng) {
+    map.addMarker(
       MarkerOptions()
         .position(latLng)
         .title(title)
     )
-    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
+    map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f))
   }
 }
