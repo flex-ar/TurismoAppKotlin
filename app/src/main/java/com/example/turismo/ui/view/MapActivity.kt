@@ -1,8 +1,10 @@
-package com.example.turismo
+package com.example.turismo.ui.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.turismo.databinding.ActivityMapBinding
+import com.example.turismo.ui.viewmodel.PlacesViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -12,11 +14,14 @@ import com.google.android.gms.maps.model.MarkerOptions
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
   private lateinit var map: GoogleMap
+  private lateinit var placesViewModel: PlacesViewModel
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     val binding = ActivityMapBinding.inflate(layoutInflater)
     setContentView(binding.root)
+
+    placesViewModel = ViewModelProvider(this)[PlacesViewModel::class.java]
 
     setSupportActionBar(binding.topAppBar)
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -28,7 +33,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
   override fun onMapReady(googleMap: GoogleMap) {
     map = googleMap
-    places.forEach {
+    placesViewModel.getPlaces().forEach {
       createMarker(
         LatLng(it.latitude, it.longitude),
         it.title

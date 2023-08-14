@@ -1,27 +1,33 @@
-package com.example.turismo
+package com.example.turismo.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.turismo.databinding.ViewPlaceItemBinding
+import com.example.turismo.domain.Place
 
 class PlacesAdapter(
-  private val places: MutableList<Place>,
   private val placeClickListener: (Place) -> Unit
 ) :
-  RecyclerView.Adapter<PlacesAdapter.ViewHolder>() {
+  RecyclerView.Adapter<PlacesAdapter.PlaceViewHolder>() {
+  private var places: List<Place> = emptyList()
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+  fun updatePlaceList(newPlaces: List<Place>) {
+    places = newPlaces
+    notifyDataSetChanged()
+  }
+
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceViewHolder {
     val binding = ViewPlaceItemBinding.inflate(
       LayoutInflater.from(parent.context),
       parent,
       false
     )
 
-    return ViewHolder(binding)
+    return PlaceViewHolder(binding)
   }
 
-  override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+  override fun onBindViewHolder(holder: PlaceViewHolder, position: Int) {
     val place = places[position]
     holder.bind(place)
     holder.itemView.setOnClickListener { placeClickListener(place) }
@@ -29,17 +35,7 @@ class PlacesAdapter(
 
   override fun getItemCount(): Int = places.size
 
-  fun sortByIndex() {
-    places.sortBy { it.index }
-    notifyDataSetChanged()
-  }
-
-  fun sortByDistance() {
-    places.sortBy { it.distance }
-    notifyDataSetChanged()
-  }
-
-  class ViewHolder(private val binding: ViewPlaceItemBinding) :
+  class PlaceViewHolder(private val binding: ViewPlaceItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(place: Place) {
       binding.placeTitle.text = place.title

@@ -1,7 +1,9 @@
-package com.example.turismo
+package com.example.turismo.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.turismo.domain.Place
+import com.example.turismo.R
 import com.example.turismo.databinding.ActivityDetailBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap

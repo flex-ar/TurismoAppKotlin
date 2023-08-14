@@ -1,4 +1,4 @@
-package com.example.turismo
+package com.example.turismo.domain
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
