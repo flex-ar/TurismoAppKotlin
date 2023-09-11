@@ -1,4 +1,4 @@
-package com.example.turismo
+package com.example.turismo.ui.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
