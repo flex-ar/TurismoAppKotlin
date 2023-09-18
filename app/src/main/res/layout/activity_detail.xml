@@ -111,7 +111,8 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        app:liteMode="true" />
 
       <TextView
         android:layout_width="wrap_content"
@@ -132,11 +133,7 @@
         android:layout_marginBottom="30dp"
         android:text=""
         android:textColor="@color/black"
-        tools:text="Lorem ipsum dolor sit amet. Ut repudiandae quia sed sunt asperiores et voluptas aspernatur in dolorem dolorem. Et veniam quibusdam et voluptas consequuntur ea necessitatibus Quis eos voluptas dolore est temporibus rerum? Et consequatur voluptas eos facilis vitae ut illo repudiandae.
-
-Sed earum esse aut voluptas consequatur et dolores nulla est similique voluptas et totam doloremque ut galisum itaque sed voluptatem nemo. Aut dignissimos ratione ad quae rerum et soluta galisum et culpa saepe aut inventore ullam. A aliquam odio ut autem quibusdam ad dolores provident.
-
-Aut corrupti deleniti cum nihil autem qui quas aperiam sed similique laboriosam sit voluptas quia. Ut quia aspernatur et nihil provident ut dolorem labore aut omnis provident est nihil ipsam ut iure reprehenderit! Ut omnis rerum a sequi inventore est illum sint. Quo dolorem quisquam ad suscipit dolores aut nisi velit cum earum incidunt est architecto quia non rerum fugit." />
+        tools:text="" />
 
     </LinearLayout>
 
