@@ -9,19 +9,22 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import com.example.turismo.databinding.PopupLayoutBinding
+import com.example.turismo.domain.Place
 
 object PopupManager {
   var isActive = false;
 
-  fun showPopup(context: Context, music: Int) {
+  fun showPopup(context: Context, place: Place) {
     isActive = true
     val dialogBuilder = AlertDialog.Builder(context)
     val binding = PopupLayoutBinding.inflate(LayoutInflater.from(context))
     dialogBuilder.setView(binding.root)
     val alertDialog = dialogBuilder.create()
     alertDialog.setCanceledOnTouchOutside(false)
-    val mediaPlayer = MediaPlayer.create(context, music)
+    val mediaPlayer = MediaPlayer.create(context, place.audio)
     var isThreadRunning = true
+
+    binding.title.text = place.title
 
     binding.toggleButton.addOnButtonCheckedListener { _, checkedId, isChecked ->
       if (isChecked) {
