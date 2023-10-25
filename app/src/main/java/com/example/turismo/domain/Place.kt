@@ -7,6 +7,8 @@ import kotlinx.parcelize.Parcelize
 data class Place(
   val title: String,
   val image: Int,
+  val audio: Int,
+  val activateAudio: Boolean,
   val description: String,
   val distance: Double,
   val address: String,

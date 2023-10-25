@@ -17,6 +17,12 @@ class PlacesViewModel(private val placesRepository: PlacesRepository) : ViewMode
   val placeSelected = _placeSelected.asStateFlow()
 
   // Events
+  fun getClosestPlace() = placesRepository.getPlaces().sortedBy { it.distance }[0]
+
+  fun setAudioOn(index: Int) {
+    _placesFlow.update { placesRepository.setAudioOn(index) }
+  }
+
   fun sortByIndex() {
     _placesFlow.update { placesRepository.sortByIndex() }
   }

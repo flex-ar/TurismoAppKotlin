@@ -10,6 +10,8 @@ object PlacesRepository {
     Place(
       "Vivienda de Ernesto Romberg",
       R.drawable.wp1,
+      R.raw.music,
+      true,
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       2.0,
       "address",
@@ -19,6 +21,8 @@ object PlacesRepository {
     Place(
       "Escuela N ° 14 “20 de Noviembre”",
       R.drawable.wp2,
+      R.raw.music,
+      true,
       "description",
       3.0,
       "address",
@@ -28,6 +32,8 @@ object PlacesRepository {
     Place(
       "Vivienda de la familia Maimo",
       R.drawable.wp3,
+      R.raw.music,
+      true,
       "description",
       1.0,
       "address",
@@ -37,6 +43,8 @@ object PlacesRepository {
     Place(
       "title 4",
       R.drawable.wp1,
+      R.raw.music,
+      true,
       "description",
       7.0,
       "address",
@@ -46,6 +54,8 @@ object PlacesRepository {
     Place(
       "title 5",
       R.drawable.wp2,
+      R.raw.music,
+      true,
       "description",
       5.0,
       "address",
@@ -55,6 +65,8 @@ object PlacesRepository {
     Place(
       "title 6",
       R.drawable.wp3,
+      R.raw.music,
+      true,
       "description",
       6.0, "address",
       -46.455313615047636, -67.49829281286121,
@@ -63,6 +75,8 @@ object PlacesRepository {
     Place(
       "title 7",
       R.drawable.wp1,
+      R.raw.music,
+      true,
       "description",
       4.0,
       "address",
@@ -80,6 +94,13 @@ object PlacesRepository {
   }
 
   fun getPlaces() = places
+
+  fun setAudioOn(index: Int): List<Place> {
+    places = places.map {
+      if (index == it.index) it.copy(activateAudio = false) else it
+    }
+    return places
+  }
 
   fun sortByIndex(): List<Place> {
     places = places.sortedBy { it.index }
