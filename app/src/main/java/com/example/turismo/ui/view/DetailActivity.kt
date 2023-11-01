@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.turismo.R
 import com.example.turismo.data.PlacesRepository
 import com.example.turismo.databinding.ActivityDetailBinding
+import com.example.turismo.ui.utils.PopupManager
 import com.example.turismo.ui.utils.hasLocationPermission
 import com.example.turismo.ui.utils.requestLocationPermission
 import com.example.turismo.ui.viewmodel.PlacesViewModel
@@ -44,6 +45,20 @@ class DetailActivity : AppCompatActivity(), OnMapReadyCallback {
     mapFragment?.getMapAsync(this)
 
     subscribeToObservable()
+
+//    binding.buttonAudio.setOnClickListener {}
+
+    binding.buttonAudio.setOnClickListener {
+      showPopup()
+    }
+  }
+
+  private fun showPopup() {
+    lifecycleScope.launch {
+      viewModel.placeSelected.collectLatest {
+        PopupManager.showPopup(this@DetailActivity, it)
+      }
+    }
   }
 
   private fun subscribeToObservable() {
