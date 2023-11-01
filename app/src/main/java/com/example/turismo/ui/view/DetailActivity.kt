@@ -1,9 +1,12 @@
 package com.example.turismo.ui.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -46,10 +49,28 @@ class DetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
     subscribeToObservable()
 
-//    binding.buttonAudio.setOnClickListener {}
+    binding.buttonHowToGet.setOnClickListener {
+      openGoogleMaps()
+    }
 
     binding.buttonAudio.setOnClickListener {
       showPopup()
+    }
+  }
+
+  private fun openGoogleMaps() {
+    lifecycleScope.launch {
+      viewModel.placeSelected.collectLatest {
+        val locationUri = Uri.parse("google.navigation:q=${it.latitude},${it.longitude}")
+        val mapIntent = Intent(Intent.ACTION_VIEW, locationUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        if (mapIntent.resolveActivity(packageManager) != null) {
+          startActivity(mapIntent)
+        } else {
+          Log.d("GOOGLE MAPS", "instalar google maps")
+        }
+
+      }
     }
   }
 
